@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -120,10 +119,20 @@ export default function EnseignantsAdmin() {
         url_photo = urlData.publicUrl;
       }
 
-      // Ajouter l'enseignant dans la base de données
+      // Ajouter l'enseignant dans la base de données - CORRECTION: utiliser un seul objet au lieu d'un tableau
       const { data: enseignant, error } = await supabase
         .from('enseignants')
-        .insert([{ ...data, url_photo }])
+        .insert({ 
+          nom: data.nom, 
+          prenom: data.prenom, 
+          titre: data.titre || null, 
+          domaine: data.domaine, 
+          specialite: data.specialite || null, 
+          email: data.email || null, 
+          telephone: data.telephone || null, 
+          bio: data.bio || null, 
+          url_photo: url_photo || null 
+        })
         .select()
         .single();
         

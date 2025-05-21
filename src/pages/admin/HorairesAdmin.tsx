@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -110,10 +109,15 @@ export default function HorairesAdmin() {
         
       const url_pdf = urlData.publicUrl;
 
-      // Ajouter l'horaire dans la base de données
+      // Ajouter l'horaire dans la base de données - CORRECTION: utiliser un seul objet au lieu d'un tableau
       const { data: horaire, error } = await supabase
         .from('horaires')
-        .insert([{ ...data, url_pdf }])
+        .insert({
+          titre: data.titre,
+          filiere: data.filiere, 
+          annee: data.annee, 
+          url_pdf: url_pdf
+        })
         .select()
         .single();
         

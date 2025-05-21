@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -91,10 +90,14 @@ export default function PhotosAdmin() {
         
       const url_image = urlData.publicUrl;
 
-      // Ajouter la photo dans la base de données
+      // Ajouter la photo dans la base de données - CORRECTION: utiliser un seul objet au lieu d'un tableau
       const { data: photo, error } = await supabase
         .from('photos_campus')
-        .insert([{ ...data, url_image }])
+        .insert({
+          titre: data.titre,
+          description: data.description || null,
+          url_image: url_image
+        })
         .select()
         .single();
         
