@@ -9,7 +9,135 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      administrateurs: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          nom: string
+          prenom: string
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id: string
+          nom: string
+          prenom: string
+          role?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          nom?: string
+          prenom?: string
+          role?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      enseignants: {
+        Row: {
+          bio: string | null
+          date_ajout: string
+          domaine: string
+          email: string | null
+          id: string
+          nom: string
+          prenom: string
+          specialite: string | null
+          telephone: string | null
+          titre: string | null
+          url_photo: string | null
+        }
+        Insert: {
+          bio?: string | null
+          date_ajout?: string
+          domaine: string
+          email?: string | null
+          id?: string
+          nom: string
+          prenom: string
+          specialite?: string | null
+          telephone?: string | null
+          titre?: string | null
+          url_photo?: string | null
+        }
+        Update: {
+          bio?: string | null
+          date_ajout?: string
+          domaine?: string
+          email?: string | null
+          id?: string
+          nom?: string
+          prenom?: string
+          specialite?: string | null
+          telephone?: string | null
+          titre?: string | null
+          url_photo?: string | null
+        }
+        Relationships: []
+      }
+      horaires: {
+        Row: {
+          annee: string
+          date_publication: string
+          filiere: string
+          id: string
+          publie_par: string | null
+          titre: string
+          url_pdf: string
+        }
+        Insert: {
+          annee: string
+          date_publication?: string
+          filiere: string
+          id?: string
+          publie_par?: string | null
+          titre: string
+          url_pdf: string
+        }
+        Update: {
+          annee?: string
+          date_publication?: string
+          filiere?: string
+          id?: string
+          publie_par?: string | null
+          titre?: string
+          url_pdf?: string
+        }
+        Relationships: []
+      }
+      photos_campus: {
+        Row: {
+          ajoute_par: string | null
+          date_ajout: string
+          description: string | null
+          id: string
+          titre: string
+          url_image: string
+        }
+        Insert: {
+          ajoute_par?: string | null
+          date_ajout?: string
+          description?: string | null
+          id?: string
+          titre: string
+          url_image: string
+        }
+        Update: {
+          ajoute_par?: string | null
+          date_ajout?: string
+          description?: string | null
+          id?: string
+          titre?: string
+          url_image?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
